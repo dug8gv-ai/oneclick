@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
         player2,
         currentTurn: state.currentTurn,
         status: state.status,
-        gameState: state,
+        gameState: JSON.stringify(state),
         winner: null
       }
     });
@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
       currentTurn: match.currentTurn,
       status: match.status,
       winner: match.winner,
-      gameState: match.gameState
+      gameState: JSON.parse(match.gameState)
     });
   } catch {
     return NextResponse.json({ error: 'Unable to create match right now.' }, { status: 500 });

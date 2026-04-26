@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { LudoGameState } from '@/lib/game';
 import { prisma } from '@/lib/prisma';
 
 const updateMatchStateSchema = z.object({
@@ -35,7 +34,7 @@ export async function POST(request: NextRequest) {
         currentTurn: gameState.currentTurn,
         status: gameState.status,
         winner: gameState.winner,
-        gameState: gameState as unknown as LudoGameState
+        gameState: JSON.stringify(gameState)
       }
     });
 
@@ -44,7 +43,7 @@ export async function POST(request: NextRequest) {
       currentTurn: updated.currentTurn,
       status: updated.status,
       winner: updated.winner,
-      gameState: updated.gameState
+      gameState: JSON.parse(updated.gameState)
     });
   } catch {
     return NextResponse.json({ error: 'Unable to update match state.' }, { status: 500 });

@@ -22,7 +22,7 @@ model Match {
   player2     String
   currentTurn String
   status      String
-  gameState   Json
+  gameState   String
   winner      String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

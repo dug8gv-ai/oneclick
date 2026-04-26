@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
       currentTurn: match.currentTurn,
       status: match.status,
       winner: match.winner,
-      gameState: match.gameState
+      gameState: JSON.parse(match.gameState)
     });
   } catch {
     return NextResponse.json({ error: 'Unable to fetch match.' }, { status: 500 });
