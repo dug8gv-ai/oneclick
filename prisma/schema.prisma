@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
@@ -15,14 +16,14 @@ model User {
 }
 
 model Match {
-  id        Int      @id @default(autoincrement())
-  matchId   String   @unique
-  player1   String
-  player2   String
+  id          Int      @id @default(autoincrement())
+  matchId     String   @unique
+  player1     String
+  player2     String
   currentTurn String
-  status    String
-  gameState Json
-  winner    String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  status      String
+  gameState   Json
+  winner      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
